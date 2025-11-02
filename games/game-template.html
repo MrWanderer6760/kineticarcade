@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра: Orion Sandbox - Kinetic Arcade</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+<header>
+    <div class="nav-bar">
+        <a href="index.html" class="logo">
+            <img src="images/FL.png" alt="Logo">
+            Kinetic Arcade
+        </a>
+        <nav class="nav-links">
+            <a href="index.html">Главная страница</a>
+            <a href="catalog-games.html" class="active">Каталог игр</a>
+            <a href="about-project.html">Об проекте</a>
+            <a href="social-media.html">Социальные сети</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="game-layout">
+        <div class="game-header">
+            <div class="game-icon">
+                <img src="images/game_icon_placeholder.jpg" alt="Иконка игры">
+            </div>
+            <div class="game-info">
+                <h1>Orion Sandbox (Шаблон)</h1>
+                <p>Жанр: Приключения, Песочница. Разработчик: Edembo Studios (Placeholder)</p>
+            </div>
+        </div>
+
+        <div class="player-area">
+            <div id="flash-container"></div>
+            <button id="fullscreen-button" class="fullscreen-button">
+                🎮 Развернуть на весь экран
+            </button>
+        </div>
+
+        <div class="description-box">
+            <h2>Об игре</h2>
+            <p>Orion Sandbox — это захватывающая игра в жанре "песочница", где вы исследуете огромный мир, собираете ресурсы, строите убежище и сражаетесь с монстрами. Вдохновленная классическими инди-играми, она предлагает бесконечные часы увлекательного геймплея. Вставьте здесь полное описание игры, ее историю и особенности.</p>
+            
+            <h3>Как играть:</h3>
+            <ul>
+                <li>WASD или Стрелки - Движение</li>
+                <li>Мышь - Взаимодействие и добыча ресурсов</li>
+                <li>E - Инвентарь</li>
+            </ul>
+        </div>
+
+        <div class="screenshots-section">
+            <h2>Скриншоты</h2>
+            <div class="screenshots-carousel">
+                <img src="images/screenshot_1.jpg" alt="Скриншот 1">
+                <img src="images/screenshot_2.jpg" alt="Скриншот 2">
+                <img src="images/screenshot_3.jpg" alt="Скриншот 3">
+                <img src="images/screenshot_4.jpg" alt="Скриншот 4">
+                <img src="images/screenshot_5.jpg" alt="Скриншот 5">
+                <img src="images/screenshot_6.jpg" alt="Скриншот 6">
+                <img src="images/screenshot_7.jpg" alt="Скриншот 7">
+                <img src="images/screenshot_8.jpg" alt="Скриншот 8">
+                <img src="images/screenshot_9.jpg" alt="Скриншот 9">
+                <img src="images/screenshot_10.jpg" alt="Скриншот 10">
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Edembo Entertainment Studios | edemboentertainment@gmail.com</p>
+</footer>
+
+<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+<script src="scripts.js"></script>
+<script>
+    window.RufflePlayer = window.RufflePlayer || {};
+    window.RufflePlayer.config = {
+        "allow_fullscreen": true,
+        "autoplay": "on",
+        "unmuteOverlay": "hidden"
+    };
+
+    window.addEventListener("load", (event) => {
+        const container = document.getElementById("flash-container");
+        const fullscreenButton = document.getElementById("fullscreen-button");
+        
+        const ruffle = window.RufflePlayer.newest();
+        const player = ruffle.createPlayer();
+
+        player.style.width = "100%";
+        player.style.height = "100%";
+        player.style.border = "none";
+
+        container.appendChild(player);
+        
+        player.load("orion_sandbox.swf");
+        
+        fullscreenButton.addEventListener("click", () => {
+            if (player && player.enterFullscreen) {
+                player.enterFullscreen();
+            }
+        });
+    });
+</script>
+</body>
+</html>

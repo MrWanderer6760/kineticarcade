@@ -80,15 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-        
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                setTimeout(() => {
-                    navMenu.classList.remove('active');
-                }, 100); 
-            });
-        });
-    }
 
 const TOTAL_GAMES = 40;
 const GAMES_PER_PAGE = 20;

@@ -6,6 +6,53 @@
     <title>Orion Sandbox - Kinetic Arcade</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <style>
+     .game-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #000;
+        }
+
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #ff8a00;
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
 
@@ -38,7 +85,13 @@
         </div>
 
         <div class="player-area">
-            <div id="flash-container"></div>
+            <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div class="loading-text">Загрузка Orion Sandbox Enhanced...</div>
+           </div>
+            <div id="flash-container">
+                <iframe src="https://flashstorage.games/player/orion-sandbox?game=%257B%2522id%2522%253A13476%252C%2522name%2522%253A%2522Orion+Sandbox%2522%252C%2522slug%2522%253A%2522orion-sandbox%2522%252C%2522file%2522%253A%2522%255B%257B%255C%2522download_link%255C%2522%253A%255C%2522games%255C%252FFLASHJanuary2022%255C%252Forion-sandbox.swf%255C%2522%252C%255C%2522original_name%255C%2522%253A%255C%2522orion-sandbox.swf%255C%2522%257D%255D%2522%252C%2522alt_file%2522%253Anull%252C%2522alt_game%2522%253Anull%252C%2522width%2522%253A800%252C%2522height%2522%253A640%252C%2522origin%2522%253Anull%252C%2522extension%2522%253A%2522SWF%2522%252C%2522flashversion%2522%253Anull%252C%2522image%2522%253A%2522games%255C%252FIMGJanuary2022%255C%252Forion-sandbox.jpg%2522%252C%2522playable%2522%253A0%252C%2522resizable%2522%253A1%252C%2522updatedAt%2522%253Anull%252C%2522avm%2522%253A2%252C%2522flashvars%2522%253Anull%252C%2522emulator%2522%253A%2522ruffle%2522%252C%2522orientation%2522%253A%2522landscape%2522%252C%2522embed_options%2522%253A%2522%257B%255C%2522wmode%255C%2522%253A%255C%2522opaque%255C%2522%252C+%255C%2522allowNetworking%255C%2522%253A+%255C%2522internal%255C%2522%252C+%255C%2522allowScriptAccess%255C%2522%253A+%255C%2522No%255C%2522%257D%2522%252C%2522name_mvkb%2522%253Anull%252C%2522style_mvkb%2522%253Anull%252C%2522left_mvkb%2522%253A%2522%255B%255C%252265%255C%2522%252C%255C%252268%255C%2522%255D%2522%252C%2522right_mvkb%2522%253A%2522%255B%255C%252232%255C%2522%255D%2522%252C%2522category_slug%2522%253A%2522adventure%2522%252C%2522updated_at%2522%253Anull%252C%2522star_user%2522%253A206%257D" class="game-frame" frameborder="0" scrolling="no"></iframe>
+            </div>
             <button id="fullscreen-button" class="fullscreen-button">
                 🎮 Развернуть на весь экран
             </button>
@@ -99,7 +152,7 @@
 
         container.appendChild(player);
         
-        player.load("https://flashstorage.games/player/orion-sandbox?game=%257B%2522id%2522%253A13476%252C%2522name%2522%253A%2522Orion+Sandbox%2522%252C%2522slug%2522%253A%2522orion-sandbox%2522%252C%2522file%2522%253A%2522%255B%257B%255C%2522download_link%255C%2522%253A%255C%2522games%255C%252FFLASHJanuary2022%255C%252Forion-sandbox.swf%255C%2522%252C%255C%2522original_name%255C%2522%253A%255C%2522orion-sandbox.swf%255C%2522%257D%255D%2522%252C%2522alt_file%2522%253Anull%252C%2522alt_game%2522%253Anull%252C%2522width%2522%253A800%252C%2522height%2522%253A640%252C%2522origin%2522%253Anull%252C%2522extension%2522%253A%2522SWF%2522%252C%2522flashversion%2522%253Anull%252C%2522image%2522%253A%2522games%255C%252FIMGJanuary2022%255C%252Forion-sandbox.jpg%2522%252C%2522playable%2522%253A0%252C%2522resizable%2522%253A1%252C%2522updatedAt%2522%253Anull%252C%2522avm%2522%253A2%252C%2522flashvars%2522%253Anull%252C%2522emulator%2522%253A%2522ruffle%2522%252C%2522orientation%2522%253A%2522landscape%2522%252C%2522embed_options%2522%253A%2522%257B%255C%2522wmode%255C%2522%253A%255C%2522opaque%255C%2522%252C+%255C%2522allowNetworking%255C%2522%253A+%255C%2522internal%255C%2522%252C+%255C%2522allowScriptAccess%255C%2522%253A+%255C%2522No%255C%2522%257D%2522%252C%2522name_mvkb%2522%253Anull%252C%2522style_mvkb%2522%253Anull%252C%2522left_mvkb%2522%253A%2522%255B%255C%252265%255C%2522%252C%255C%252268%255C%2522%255D%2522%252C%2522right_mvkb%2522%253A%2522%255B%255C%252232%255C%2522%255D%2522%252C%2522category_slug%2522%253A%2522adventure%2522%252C%2522updated_at%2522%253Anull%252C%2522star_user%2522%253A206%257D");
+        player.load("");
         
         fullscreenButton.addEventListener("click", () => {
             if (player && player.enterFullscreen) {
@@ -107,6 +160,19 @@
             }
         });
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+         const loading = document.getElementById('loading');
+         const gameFrame = document.querySelector('.game-frame');
+            
+         gameFrame.addEventListener('load', function() {
+             setTimeout(function() {
+             loading.classList.add('hidden');
+           }, 1000);
+     });
+
+     document.addEventListener('touchmove', function(e) {
+             if (e.scale !== 1) {
 </script>
 </body>
 </html>

@@ -63,11 +63,28 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPagination(currentPage);
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const burgerBtn = document.getElementById('burger-menu-btn');
+    const navMenu = document.getElementById('nav-links-menu');
+
+    if (burgerBtn && navMenu) {
+        burgerBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                setTimeout(() => {
+                    navMenu.classList.remove('active');
+                }, 100); 
+            });
+        });
+    }
+
 const TOTAL_GAMES = 40;
 const GAMES_PER_PAGE = 20;
 const TOTAL_PAGES = Math.ceil(TOTAL_GAMES / GAMES_PER_PAGE);
 
-// Шаблон данных для 40 игр (заглушка)
 const gamesData = Array.from({ length: TOTAL_GAMES }, (_, i) => ({
     id: i + 1,
     title: `Классика Flash №${i + 1}`,
@@ -75,10 +92,6 @@ const gamesData = Array.from({ length: TOTAL_GAMES }, (_, i) => ({
     link: `game-template.html?gameid=${i + 1}` 
 }));
 
-/**
- * Генерирует и отображает плитки игр для текущей страницы.
- * @param {number} page - Номер страницы для отображения.
- */
 function renderGameGrid(page) {
     const grid = document.querySelector('.game-grid');
     if (!grid) return;
@@ -108,10 +121,6 @@ function renderGameGrid(page) {
     });
 }
 
-/**
- * Генерирует ссылки для перелистывания страниц.
- * @param {number} currentPage - Текущий номер страницы.
- */
 function renderPagination(currentPage) {
     const paginationContainer = document.querySelector('.pagination');
     if (!paginationContainer || TOTAL_PAGES <= 1) return; 

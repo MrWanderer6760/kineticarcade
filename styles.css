@@ -345,7 +345,13 @@ footer {
         width: 80vw; 
         height: auto;
     }
+    .burger-menu {
+        display: block; 
+    }
     .nav-links {
         display: none; 
+    }
+    .nav-links.active {
+        display: flex; 
     }
 }
